@@ -61,11 +61,11 @@ for domain in $sd_source; do
 
 	#amass enum -brute -w /home/user/tools/wordlists/subdomains.txt -d $1 -o $sd/brute_subs_amass_$domain -ip -config /home/user/tools/configs/amass_config.ini
 	
+	### really effective but kills provider internet several times
 	#subbrute.py ~/tools/wordlists/jhaddix_sub.txt $domain | massdns -r ~/tools/wordlists/resolvers.txt -t A -o S -w $sd/subs_massdns_$domain
 
-
+	"$DIR"/dns_postprocess.sh $domain
 done
 
-postprocess_dns.sh
 
 
