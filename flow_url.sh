@@ -1,6 +1,8 @@
+#!/bin/bash
 
 # Grab Params and URLs
 
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
 vp=vars_pars
 
@@ -10,13 +12,13 @@ fi
 
 for domain in $(cat $1); do
 	echo "Grab URLs for $domain"
-	grab_urls.sh "$domain"
+	"$DIR"/url_grab.sh "$domain"
 	echo "Extract JS"
-	ext_par_js.sh "$domain"
+	"$DIR"/url_ext_js.sh "$domain"
 	echo "Extract URL param"
-	ext_par_url.sh "$domain"
+	"$DIR"/url_ext_link.sh "$domain"
 	echo "Extract HTML param"
-	ext_par_html.sh "$domain"
+	"$DIR"/url_html.sh "$domain"
 
 done
 
